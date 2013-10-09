@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+    <% if !yield(:title).blank? %>
+      <%= yield(:title) %>
+    <% else %>
+      XChat
+    <% end %>
+  </title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <% if flash[:notice] %>
+    <p><%= notice %></p>
+  <% elsif flash[:alert] %>
+    <p><%= alert %></p>
+  <% end %>
+
+<%= yield %>
+
+</body>
+</html>

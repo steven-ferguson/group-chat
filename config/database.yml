@@ -1,0 +1,8 @@
+development:
+  adapter: postgresql
+  database: xChat_development
+
+
+test:
+  adapter: postgresql
+  database: xChat_test
