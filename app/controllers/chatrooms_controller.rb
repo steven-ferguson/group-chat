@@ -5,6 +5,11 @@ class ChatroomsController < ApplicationController
 
   def new 
     @chatroom = Chatroom.new
+    if can? :create, @chatroom
+      render 'new'
+    else
+      redirect_to root_path, alert: "Unauthorized"
+    end
   end
 
   def create
@@ -18,6 +23,11 @@ class ChatroomsController < ApplicationController
 
   def show
     @chatroom = Chatroom.find(params[:id])
+    if can? :read, @chatroom
+      render 'show'
+    else
+      redirect_to root_path, alert: "Unauthorized"
+    end
   end
 
 private

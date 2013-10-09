@@ -1,4 +1,6 @@
-<%= link_to 'New Room', new_chatroom_path %>
+<% if can? :create, Chatroom.new %>
+  <%= link_to 'New Room', new_chatroom_path %>
+<% end %>
 
 <ul>
   <% @chatrooms.each do |chatroom| %>
