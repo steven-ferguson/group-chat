@@ -3,7 +3,7 @@ class ChatroomsController < ApplicationController
     @chatrooms = Chatroom.all
   end
 
-  def new 
+  def new
     @chatroom = Chatroom.new
     if can? :create, @chatroom
       render 'new'
@@ -13,7 +13,7 @@ class ChatroomsController < ApplicationController
   end
 
   def create
-    @chatroom = Chatroom.new(chatroom_params)
+    @chatroom = current_user.owned_chatrooms.new(chatroom_params)
     if @chatroom.save
       redirect_to chatrooms_path, notice: "Chatroom successfully created!"
     else
@@ -32,7 +32,7 @@ class ChatroomsController < ApplicationController
 
 private
   def chatroom_params
-    params.require(:chatroom).permit(:name, :owner_id)
+    params.require(:chatroom).permit(:name, :owner_id, :users)
   end
 
 end
