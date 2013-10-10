@@ -5,3 +5,11 @@
   <%= link_to 'Add Friend', new_participation_path(chatroom_id: @chatroom.id) %>
 <% end %>
 
+<% if @chatroom.users.any? %>
+  <% @chatroom.users.each do |user| %>
+    <%= user.name %> | <%= link_to user.email, '#' %>
+  <% end %>
+<% end %>
+
+
+
