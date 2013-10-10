@@ -6,4 +6,9 @@ describe Chatroom do
   it { should belong_to :owner }
   it { should have_many(:users).through(:participations) }
   
+  it "adds the owner to the list of users when created" do 
+    chatroom = FactoryGirl.build(:chatroom)
+    chatroom.save
+    chatroom.users.should eq [chatroom.owner]
+  end
 end

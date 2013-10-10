@@ -28,4 +28,18 @@ describe Ability do
     ability = Ability.new(user)
     ability.should_not be_able_to(:read, chatroom)
   end
+
+  it "allows owners of a chatroom to add their friends as members" do 
+    chatroom = FactoryGirl.create(:chatroom)
+    ability = Ability.new(chatroom.owner)
+    ability.should be_able_to(:create, chatroom.participations.new)
+  end
+
+  it "does not allow non-owner members of a chatroom to add their friends as members" do 
+    user = FactoryGirl.create(:user)
+    chatroom = FactoryGirl.create(:chatroom)
+    chatroom.participations.create(user: user)
+    ability = Ability.new(user)
+    ability.should_not be_able_to(:create, chatroom.participations.new)
+  end
 end

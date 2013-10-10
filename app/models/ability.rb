@@ -10,6 +10,10 @@ class Ability
       can :read, Chatroom do |chatroom|
         chatroom.users.include?(user)
       end
+      
+      can :create, Participation do |participation|
+        participation.chatroom.owner == user
+      end
     end
     #
     # The first argument to `can` is the action you are giving the user 

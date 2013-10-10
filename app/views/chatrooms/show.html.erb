@@ -1,3 +1,7 @@
 <% provide(:title, @chatroom.name) %>
 
 <h1><%= @chatroom.name %></h1>
+<% if can? :create, @chatroom.participations.new %>
+  <%= link_to 'Add Friend', new_participation_path(chatroom_id: @chatroom.id) %>
+<% end %>
+

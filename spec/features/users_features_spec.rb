@@ -32,8 +32,8 @@ feature 'Sign In' do
     user = FactoryGirl.create(:user)
     visit chatrooms_path
     click_link "Sign In"
-    fill_in "user_email", with: "Steve@foo.com"
-    fill_in "user_password", with: "foobar11"
+    fill_in "user_email", with: user.email
+    fill_in "user_password", with: user.password
     click_on "Log in"
     page.should have_content "Signed in" 
   end
@@ -44,8 +44,8 @@ feature 'Sign Out' do
     user = FactoryGirl.create(:user)
     visit chatrooms_path
     click_link "Sign In"
-    fill_in "user_email", with: "Steve@foo.com"
-    fill_in "user_password", with: "foobar11"
+    fill_in "user_email", with: user.email
+    fill_in "user_password", with: user.password
     click_on "Log in"
     click_link "Sign Out"
     page.should have_content "Signed out"

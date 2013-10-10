@@ -1,0 +1,7 @@
+<%= form_tag(controller: "participations", action: "create", method: "post") do %>
+  <%= label_tag 'Friend\'s Email', :email %>
+  <%= email_field :user, :email %>
+  <%= hidden_field :participation, :chatroom_id %>
+  <%= submit_tag 'Add' %>
+<% end %>
+
